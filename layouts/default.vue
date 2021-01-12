@@ -1,10 +1,20 @@
-<template>
-  <div>
-    <Nuxt />
-  </div>
+<template lang='pug'>
+.view
+  navVue
+  Nuxt
 </template>
 
+<script>
+import navVue from '../components/nav'
+export default{
+  components:{
+    navVue
+  }
+}
+
+</script>
 <style>
+
 html {
   font-family:
     'Source Sans Pro',
