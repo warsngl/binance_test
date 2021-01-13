@@ -1,26 +1,42 @@
 <template lang='pug'>
-.wrapper
-  tVue(:items='sockData')
+.container
+  tVue(:items='items.bids')
+  tVue(:items='items.asks')
 </template>
 
 <script>
 import tVue from '../components/table'
 export default {
   data:()=>({
-    sockData:{
+    items:{
+      bids:null,
+      asks:null
     }
   }),
   components:{tVue},
-  async mounted(){
-    let dataa=await this.$sdk()
-    this.sockData=dataa
+  methods:{
+    async sockCache(){
+      let ws = new WebSocket(`wss://stream.binance.com:9443/ws/btcusdt@depth5@1000ms`)
+      ws.onmessage = async e => {
+        let data = JSON.parse(e.data)
+        this.items.bids=[...data.bids, ...this.items.bids]
+        this.items.asks=[...data.asks, ...this.items.asks]
+      }
+    }
+  },
+  async asyncData({$axios}){
+    const items=await $axios.$get('https://api.binance.com/api/v3/depth?symbol=BTCUSDT')
+    return {items}
+  },
+  mounted(){
+    this.sockCache()
   }
 }
 </script>
 
 <style>
 .container {
-  margin: 0 auto;
+  max-width: 100%;
   min-height: 100vh;
   display: flex;
   justify-content: center;
