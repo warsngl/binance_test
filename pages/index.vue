@@ -6,7 +6,15 @@
 <script>
 import tVue from '../components/table'
 export default {
-  components:{tVue}
+  data:()=>({
+    sockData:{
+    }
+  }),
+  components:{tVue},
+  async mounted(){
+    let dataa=await this.$sdk()
+    this.sockData=dataa
+  }
 }
 </script>
 

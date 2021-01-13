@@ -10,16 +10,12 @@
       tr(
         v-for='(i,idx) in items' 
         :key='idx')
-        td {{i[0]}}
-        td {{i[1]}}
-        td {{i[0]*i[1]}}
+        td {{i}}
 </template>
 
 <script>
 
 export default {
-  props:{
-    items:array 
-  }
+  props:['items']
 }
 </script>

@@ -1,7 +1,6 @@
 <template lang='pug'>
 header.header
   h1 Стакан
-  navbar.navbar
     nuxt-link(
       v-for='tab in tabs' 
       :key='tab.url'
