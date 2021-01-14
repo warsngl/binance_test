@@ -15,21 +15,20 @@ export default {
   }),
   components:{tVue},
   methods:{
-    async sockCache(){
-      let ws = new WebSocket(`wss://stream.binance.com:9443/ws/btcusdt@depth5@1000ms`)
-      ws.onmessage = async e => {
+    async startStream(){
+      this.$sdk.subscribe().onmessage = async e => {
         let data = JSON.parse(e.data)
         this.items.bids=[...data.bids, ...this.items.bids]
         this.items.asks=[...data.asks, ...this.items.asks]
       }
     }
   },
-  async asyncData({$axios}){
-    const items=await $axios.$get('https://api.binance.com/api/v3/depth?symbol=BTCUSDT')
+  async asyncData({$sdk}){
+    const items= await $sdk.get()
     return {items}
   },
   mounted(){
-    this.sockCache()
+    this.startStream()
   }
 }
 </script>
