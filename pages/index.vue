@@ -16,15 +16,15 @@ export default {
   components:{tVue},
   methods:{
     async startStream(){
-      this.$sdk.subscribe().onmessage = async e => {
+      this.$miniCore.sdk.subscribe().onmessage = async e => {
         let data = JSON.parse(e.data)
         this.items.bids=[...data.bids, ...this.items.bids]
         this.items.asks=[...data.asks, ...this.items.asks]
       }
     }
   },
-  async asyncData({$sdk}){
-    const items= await $sdk.get()
+  async asyncData({$miniCore}){
+    const items= await $miniCore.sdk.get()
     return {items}
   },
   mounted(){
