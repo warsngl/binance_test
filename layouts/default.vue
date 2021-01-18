@@ -1,7 +1,8 @@
 <template lang='pug'>
 .view
   navVue
-  Nuxt
+  keep-alive
+    Nuxt
 </template>
 
 <script>
