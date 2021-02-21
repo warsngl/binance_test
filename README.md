@@ -1,4 +1,4 @@
-# binance_test
+# Nuxt-SSR-binance-api_test-task
 https://binance-heroku.herokuapp.com/
 
 Разработать SPA приложение по заданию ниже. 
