@@ -11,13 +11,14 @@ nav.nav
 
 <script>
  export default{
-   data:()=>({
-     tabs:[
-       {'url':'/','name':'Стакан'},
-       {'url':'/diff','name':'Change diff'}
-       ]
-   })
- }
+  props:['Ticker'],
+  data:()=>({
+    tabs:[
+      {'url':'/','name':'Home'},
+      {'url':'/ticker','name':'Set Ticker'}
+    ]
+  })
+}
 </script>
 <style>
 .nav{

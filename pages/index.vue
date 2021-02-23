@@ -1,21 +1,12 @@
 <template lang='pug'>
 .wrap
-  .thead-wrap
-    .thead
-      .price Price
-      .ammount Ammount
-      .total Total
-    .thead
-      .price Price
-      .ammount Ammount
-      .total Total
-  .tbody
-    tVue.tbodywrap(:items='items.bids')
-    tVue.tbodywrap(:items='items.asks')
+  tVue(:items='items.bids')
+  tVue(:items='items.asks')
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import navVue from '../components/nav'
 import tVue from '../components/table'
 export default {
   data:()=>({
@@ -25,7 +16,7 @@ export default {
     },
     ws:null
   }),
-  components:{tVue},
+  components:{tVue,navVue},
   methods:{
     ...mapActions({CHANGE:'index/CHANGE'}),
     onlineC(){
@@ -60,30 +51,7 @@ export default {
 
 <style>
 .wrap {
-  max-width: 100%;
-}
-.thead-wrap{
-  position: sticky;
-  top:0;
   display: flex;
-  flex-direction: row;
-  background-color:green;
-}
-.thead{
-  width: 49%;
-  display: flex;
-  justify-content: space-around;
-}
-.thead:first-child{
-  margin-right: 20px;
-} 
-.tbody{
-  display: flex;
-}
-.tbodywrap{
-  width: 49%;
-  display: block;
-  height: 100vh;
-  overflow: scroll;
+  justify-content: center;
 }
 </style>

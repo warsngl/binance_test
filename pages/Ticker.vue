@@ -1,20 +1,19 @@
 <template lang='pug'>
 .diffwrapper
-  select(
+  select(style='width:150px;height:30px;'
     v-model="symbol")
     option(
       v-for='(i, idx) in options'
       :key="idx"
     ) {{ i }}
-  ul
-    li(
+  ul.ul
+    li.li(
       v-for='(d,idx) in difList'
       :key='idx'
     ) {{d}}
 </template>
 
 <script>
-import {mapState,mapActions} from 'vuex'
 export default {
   data: function () {
     return {
@@ -37,10 +36,13 @@ export default {
 </script>
 
 <style>
+.ul{
+  appearance: none;
+  font-size: 26px;
+}
 .diffwrapper{
-  display: block;
-  position: absolute;
-  left:43%;
+  display: flex;
+  justify-content: center;
   margin-top: 25px;
 }
 </style>
